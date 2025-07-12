@@ -29,6 +29,10 @@ dependencies {
     implementation("io.ktor:ktor-server-html-builder-jvm:3.0.0")
     implementation("io.ktor:ktor-server-sessions:3.0.0")
 
+    implementation("io.ktor:ktor-server-content-negotiation:2.3.4")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+
     // Exposed
     implementation("org.jetbrains.exposed:exposed-core:0.50.1")
     implementation("org.jetbrains.exposed:exposed-dao:0.50.1")

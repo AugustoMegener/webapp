@@ -259,7 +259,7 @@
     <section class="contato" id="contato">
         <div class="container">
             <h2>Entre em Contato</h2>
-            <div class="contato-conteudo">
+            <div class="contato-conteudo" >
                 <div class="contato-info">
                     <h3>Fale Conosco</h3>
                     <div class="info-item">
@@ -276,18 +276,19 @@
                     </div>
                 </div>
 
-                <form class="contato-form">
-                    <input id="name" type="text" placeholder="Seu nome" required />
-                    <input id="email" type="email" placeholder="Seu e-mail" required />
-                    <select required id="subject">
+                <form class="contato-form" id="contato-form" action="/contact" method="post">
+                    <input name="name" type="text" placeholder="Seu nome" required />
+                    <input name="email" type="email" placeholder="Seu e-mail" required />
+                    <select required name="subject">
                         <option value="">Assunto</option>
                         <option value="product">Dúvida sobre produto</option>
                         <option value="order">Status do pedido</option>
                         <option value="sponsor">Patrocínio</option>
                         <option value="other">Outro</option>
                     </select>
-                    <textarea id="message" placeholder="Sua mensagem" rows="5" required></textarea>
+                    <textarea name="message" placeholder="Sua mensagem" rows="5" required></textarea>
                     <button type="submit">📤 Enviar Mensagem</button>
+                    <small id="contact-msg"></small>
                 </form>
             </div>
         </div>
@@ -297,18 +298,21 @@
     <button class="voltar-topo" id="voltarTopo">⬆️</button>
 
     <script>
-        const form = document.getElementById('form-comunista');
+    window.addEventListener('DOMContentLoaded', () => {
+        const hash = window.location.hash.substring(1);
+        const [anchor, ...rest] = hash.split('&');
+        const queryString = rest.join('&');
 
-        form.addEventListener('submit', function(event) {
-            event.preventDefault(); 
+        if (anchor) {
+        document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth" });
+        }
 
-            fetch('/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(
-                    Object.fromEntries(Array.from(new FormData(form).entries()) /*.map(([key, value]) => [key, value])*/)
-                ) 
-            }).then(response => response.json())
-        });
+        const params = new URLSearchParams(queryString);
+        const msg = params.get("msg");
+
+        console.log(msg); 
+
+        document.getElementById('contact-msg').innerText = msg || "";
+    });
     </script>
 </body>

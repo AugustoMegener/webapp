@@ -1,10 +1,11 @@
 package com.mafiarosa
 
-import com.mafiarosa.dto.ContactFormData
+import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.*
 import io.ktor.server.http.content.defaultResource
 import io.ktor.server.http.content.resources
 import io.ktor.server.http.content.staticResources
+import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.request.receive
 import io.ktor.server.request.receiveParameters
 import io.ktor.server.request.receiveStream
@@ -24,11 +25,22 @@ import kotlinx.serialization.json.decodeFromStream
 @OptIn(ExperimentalSerializationApi::class)
 fun Routing.configureRouting() {
 
+    install(ContentNegotiation) { json() }
+
     staticResources("/", "static")
 
-    post("/") {
-        val form = call.receive<ContactFormData>()
+    post("/contact") {
+        val form = call.receiveParameters().toMap().mapValues { (_, v) -> v.first() }
+        val formPath = "/#contato&form=${Json.encodeToString(form)}"
 
-        call.respondRedirect("/")
+        call.respondRedirect(
+             when {
+                !Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$").matches(form["email"]!!) ->
+                    "$formPath?msg=E-mail inválido."
+                !listOf("name", "email", "subject", "message").all { it in form.keys } ->
+                    "$formPath?msg=Preencha todos os campos"
+                else -> "/#contato&msg=Formulário Enviado!"
+            }
+        )
     }
 }
