@@ -28,6 +28,8 @@ dependencies {
     implementation("io.ktor:ktor-server-resources:3.0.0")
     implementation("io.ktor:ktor-server-html-builder-jvm:3.0.0")
     implementation("io.ktor:ktor-server-sessions:3.0.0")
+    implementation("io.ktor:ktor-server-freemarker:3.0.0")
+
 
     implementation("io.ktor:ktor-server-content-negotiation:2.3.4")
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.4")
