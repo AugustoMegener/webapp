@@ -5,8 +5,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 enum class ContactSubject {
-    @SerialName("product") PRODUCT,
-    @SerialName("order") ORDER,
-    @SerialName("sponsor") SPONSOR,
-    @SerialName("other") OTHER
+    PRODUCT, ORDER, SPONSOR, OTHER
 }

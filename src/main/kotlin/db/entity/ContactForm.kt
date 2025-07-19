@@ -9,10 +9,11 @@ import java.util.*
 
 class ContactForm(id: EntityID<UUID>) : UUIDEntity(id) {
 
-    val name by ContactForms.name
-    val email by ContactForms.email
-    val subject by ContactForms.subject
-    val message by ContactForms.message
+    var name    by ContactForms.name
+    var email   by ContactForms.email
+    var subject by ContactForms.subject
+    var message by ContactForms.message
+    var status  by ContactForms.status
 
     companion object : UUIDEntityClass<ContactForm>(ContactForms)
 }

@@ -1,6 +1,10 @@
 package com.mafiarosa.db
 
+import com.mafiarosa.db.table.ContactForms
+import com.mafiarosa.db.table.NewsletterEmails
 import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.SchemaUtils
+import org.jetbrains.exposed.sql.transactions.transaction
 
 fun initDatabase() {
     Database.connect(
@@ -9,4 +13,8 @@ fun initDatabase() {
         user = System.getenv("DB_USER"),
         password = System.getenv("DB_PASSWORD")
     )
+
+    transaction {
+        SchemaUtils.create(ContactForms, NewsletterEmails)
+    }
 }

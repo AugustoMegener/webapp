@@ -25,6 +25,7 @@
                 <a href="#patrocinadores">Patrocinadores</a>
                 <a href="#apoiadores">Apoiadores</a>
                 <a href="#membros">Membros</a>
+                <a href="#newsletter">Novidades</a>
                 <a href="#contato">Contato</a>
                 <a href="products">Outros Produtos</a>
             </div>
@@ -234,15 +235,17 @@
 
     <!-- Newsletter -->
     <section class="newsletter" id="newsletter">
+     <div class="apoiadores" id="apoiadores">
         <div class="container">
             <h2>Fique por dentro das novidades</h2>
             <p>Receba em primeira mão lançamentos, promoções exclusivas e conteúdo especial da Máfia Rosa!</p>
-            <form class="newsletter-form" action="/?form=contact" method="get">
-                <label>
-                    <input type="email" placeholder="Seu melhor e-mail" required />
-                </label>
+            <form class="newsletter-form" action="/?form=newsletter#newsletter" method="post">
+                <label for="email"></label>
+                <input name="email" type="email" placeholder="Seu melhor e-mail" value="${newsletterEmail}" required />
+                
                 <button type="submit">📧 Inscrever-se</button>
             </form>
+            <small id="contact-msg">${newsletterInfo}</small>
             <div class="redes-sociais">
                 <h3>Siga-nos nas redes sociais</h3>
                 <div class="social-links">
@@ -278,27 +281,27 @@
                     </div>
                 </div>
 
-                <form class="contato-form" id="contato-form" action="/?form=contact" method="get">
-                    <label>
-                        <input name="name" type="text" placeholder="Seu nome" value="{contactName}" required />
-                    </label>
-                    <label>
-                        <input name="email" type="email" placeholder="Seu e-mail" value="{contactEmail}" required />
-                    </label>
-                    <label>
-                        <select required name="subject">
-                            <option value="">Assunto</option>
-                            <option value="product">Dúvida sobre produto</option>
-                            <option value="order">Status do pedido</option>
-                            <option value="sponsor">Patrocínio</option>
-                            <option value="other">Outro</option>
-                        </select>
-                    </label>
-                    <label>
-                        <textarea name="message" placeholder="Sua mensagem" rows="5" required>{contactMesage}</textarea>
-                    </label>
+                <form class="contato-form" id="contato-form" action="/?form=contact#contato" method="post">
+                    <label for="name"></label>
+                    <input name="name" type="text" placeholder="Seu nome" value="${contactName}" required />
+                    
+                    <label for="email"></label>
+                    <input name="email" type="email" placeholder="Seu e-mail" value="${contactEmail}" required />
+                    
+                    <label for="subject"></label>
+                    <select required name="subject">
+                        <option value="">Assunto</option>
+                        <option value="product">Dúvida sobre produto</option>
+                        <option value="order">Status do pedido</option>
+                        <option value="sponsor">Patrocínio</option>
+                        <option value="other">Outro</option>
+                    </select>
+                    
+                    <label for="message"></label>
+                    <textarea name="message" placeholder="Sua mensagem" rows="5" required>${contactMessage}</textarea>
+                    
                     <button type="submit">📤 Enviar Mensagem</button>
-                    <small id="contact-msg">{contactInfo}</small>
+                    <small id="contact-msg">${contactInfo}</small>
                 </form>
             </div>
         </div>
