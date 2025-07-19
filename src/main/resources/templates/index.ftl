@@ -281,7 +281,7 @@
                     </div>
                 </div>
 
-                <form class="contato-form" id="contato-form" action="/?form=contact#contato" method="post">
+                <form class="contato-form" id="contato-form" action="/?form=contact#contato" method=>
                     <label for="name"></label>
                     <input name="name" type="text" placeholder="Seu nome" value="${contactName}" required />
                     
