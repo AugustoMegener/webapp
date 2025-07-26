@@ -6,6 +6,7 @@ import io.ktor.server.application.*
 import io.ktor.server.freemarker.*
 import io.ktor.server.netty.EngineMain
 import io.ktor.server.routing.routing
+import java.util.UUID
 
 fun main(args: Array<String>) {
     initDatabase()

@@ -1,10 +1,6 @@
 package com.mafiarosa.db
 
-import com.mafiarosa.db.table.ContactForms
-import com.mafiarosa.db.table.Images
-import com.mafiarosa.db.table.NewsletterEmails
-import com.mafiarosa.db.table.ProductImages
-import com.mafiarosa.db.table.Products
+import com.mafiarosa.db.table.*
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -18,6 +14,6 @@ fun initDatabase() {
     )
 
     transaction {
-        SchemaUtils.create(ContactForms, Images, NewsletterEmails, ProductImages, Products)
+        SchemaUtils.create(Accounts, ContactForms, Images, NewsletterEmails, ProductImages, Products)
     }
 }

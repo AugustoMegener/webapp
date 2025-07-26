@@ -5,6 +5,7 @@ import com.mafiarosa.db.entity.ContactForm
 import com.mafiarosa.db.entity.NewsletterEmail
 import com.mafiarosa.db.table.NewsletterEmails
 import com.mafiarosa.dto.IndexDTO
+import com.mafiarosa.routing.account.loginGet
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.freemarker.*
 import io.ktor.server.http.content.staticResources
@@ -26,7 +27,6 @@ fun Routing.configureRouting() {
 
     staticResources("/", "static")
 
-    get("/") { indexGet() }; post("/") { indexPost() }
-
-    
+    get("/") { indexGet() };              post("/") { indexPost() }
+    get("/account/login") { loginGet() }; post("/account/login") { indexPost() }
 }
